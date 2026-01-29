@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 5: Покупки</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding:30px 40px; text-align: center; }
+        .header h1 { font-size: 2em; margin-bottom: 5px; }
+        .header p { font-size: 1em; opacity: 0.9; }
+        .back-link { display: inline-block; margin-top: 15px; color: white; text-decoration: none; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s; }
+        .back-link:hover { background: rgba(255,255,255,0.3); }
+        .content { padding: 40px; }
+        .exercise-description { background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin-bottom: 25px; }
+        .exercise-description h3 { color: #667eea; margin-bottom: 10px; }
+        .task { background: white; border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; transition: all 0.3s; }
+        .task:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1); }
+        .task h4 { color: #333; margin-bottom: 15px; }
+        .task p { color: #666; line-height: 1.6; margin-bottom: 15px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-right: 10px; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-hint { background: #ffc107; color: #333; }
+        .btn-hint:hover { background: #e0a800; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; }
+        .result.success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; display: block; }
+        .result.error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; display: block; }
+        .result.info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; display: block; }
+        .code-editor {
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .code-editor-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            color: #888;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-editor textarea {
+            width: 100%;
+            min-height: 150px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+        .code-editor textarea:focus {
+            outline: none;
+        }
+        .code-editor textarea::placeholder {
+            color: #666;
+        }
+        .explanation { background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin-top: 15px; }
+        .explanation h4 { color: #856404; margin-bottom: 10px; }
+        .explanation p { color: #856404; line-height: 1.6; }
+        .explanation code { background: #f8f9fa; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5em; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Упражнение 5: Покупки</h1>
+            <p>Урок 3: Идентификаторы, типы данных, переменные и операторы</p>
+            <a href="index.html" class="back-link">← Вернуться к списку упражнений</a>
+        </div>
+
+        <div class="content">
+            <div class="exercise-description">
+                <h3>📋 Задание</h3>
+                <p>Вычислите общую стоимость покупок.</p>
+            </div>
+
+            <div class="task">
+                <h4>Вычислите общую стоимость:</h4>
+                <p>Яблоки: 50 рублей за штуку, куплено 3 яблока<br>Бананы: 30 рублей за штуку, куплено 2 банана</p>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="shop1" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkShopping()">Проверить</button>
+                <button class="btn btn-hint" onclick="showSolution()">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetShop1()">Сбросить</button>
+                <div class="result" id="shopResult1"></div>
+            </div>
+
+            <div class="explanation">
+                <h4>💡 Подсказка</h4>
+                <p>Пример:<br><code>apple_price = 50<br>banana_price = 30<br>apple_count = 3<br>banana_count = 2<br>apple_total = apple_price * apple_count<br>banana_total = banana_price * banana_count<br>total = apple_total + banana_total<br>print(total)  # 210</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkShopping() {
+            const code = document.getElementById('shop1').value;
+            const resultDiv = document.getElementById('shopResult1');
+            if (code.includes('=') && code.includes('*') && code.includes('+')) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Отлично! Вы написали код для вычисления стоимости!<br><br>Пример решения:<br><code>apple_price = 50<br>banana_price = 30<br>apple_count = 3<br>banana_count = 2<br>apple_total = apple_price * apple_count<br>banana_total = banana_price * banana_count<br>total = apple_total + banana_total<br>print(total)  # 210</code>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Попробуйте еще раз!';
+            }
+        }
+
+        function showSolution() {
+            const solution = 'apple_price = 50\nbanana_price = 30\napple_count = 3\nbanana_count = 2\napple_total = apple_price * apple_count\nbanana_total = banana_price * banana_count\ntotal = apple_total + banana_total\nprint(total)  # 210';
+            document.getElementById('shop1').value = solution;
+            document.getElementById('shopResult1').className = 'result info';
+            document.getElementById('shopResult1').innerHTML = '💡 Пример решения:<br><code>' + solution.replace(/\n/g, '<br>') + '</code>';
+        }
+
+        function resetShop1() {
+            document.getElementById('shop1').value = '';
+            document.getElementById('shopResult1').className = 'result';
+            document.getElementById('shopResult1').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

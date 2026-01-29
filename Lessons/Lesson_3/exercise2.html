@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 2: Типы данных</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding:30px 40px; text-align: center; }
+        .header h1 { font-size: 2em; margin-bottom: 5px; }
+        .header p { font-size: 1em; opacity: 0.9; }
+        .back-link { display: inline-block; margin-top: 15px; color: white; text-decoration: none; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s; }
+        .back-link:hover { background: rgba(255,255,255,0.3); }
+        .content { padding: 40px; }
+        .exercise-description { background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin-bottom: 25px; }
+        .exercise-description h3 { color: #667eea; margin-bottom: 10px; }
+        .task { background: white; border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; transition: all 0.3s; }
+        .task:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1); }
+        .task h4 { color: #333; margin-bottom: 15px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-right: 10px; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-hint { background: #ffc107; color: #333; }
+        .btn-hint:hover { background: #e0a800; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; }
+        .result.success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; display: block; }
+        .result.error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; display: block; }
+        .result.info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; display: block; }
+        .code-editor {
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .code-editor-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            color: #888;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-editor textarea {
+            width: 100%;
+            min-height: 150px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+        .code-editor textarea:focus {
+            outline: none;
+        }
+        .code-editor textarea::placeholder {
+            color: #666;
+        }
+        .explanation { background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin-top: 15px; }
+        .explanation h4 { color: #856404; margin-bottom: 10px; }
+        .explanation p { color: #856404; line-height: 1.6; }
+        .explanation ul { margin-left: 20px; margin-top: 10px; }
+        .explanation li { margin-bottom: 5px; }
+        .explanation code { background: #f8f9fa; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5em; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Упражнение 2: Типы данных</h1>
+            <p>Урок 3: Идентификаторы, типы данных, переменные и операторы</p>
+            <a href="index.html" class="back-link">← Вернуться к списку упражнений</a>
+        </div>
+
+        <div class="content">
+            <div class="exercise-description">
+                <h3>📋 Задание</h3>
+                <p>Создайте переменные разных типов и определите их тип.</p>
+            </div>
+
+            <div class="task">
+                <h4>1. Создайте переменную с целым числом (int):</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="intInput" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkIntType()">Проверить тип</button>
+                <button class="btn btn-hint" onclick="showSolution('int')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetIntInput()">Сбросить</button>
+                <div class="result" id="intResult"></div>
+            </div>
+
+            <div class="task">
+                <h4>2. Создайте переменную с числом с плавающей точкой (float):</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="floatInput" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkFloatType()">Проверить тип</button>
+                <button class="btn btn-hint" onclick="showSolution('float')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetFloatInput()">Сбросить</button>
+                <div class="result" id="floatResult"></div>
+            </div>
+
+            <div class="task">
+                <h4>3. Создайте переменную со строкой (str):</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="strInput" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkStrType()">Проверить тип</button>
+                <button class="btn btn-hint" onclick="showSolution('str')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetStrInput()">Сбросить</button>
+                <div class="result" id="strResult"></div>
+            </div>
+
+            <div class="task">
+                <h4>4. Создайте переменную с логическим значением (bool):</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="boolInput" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkBoolType()">Проверить тип</button>
+                <button class="btn btn-hint" onclick="showSolution('bool')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetBoolInput()">Сбросить</button>
+                <div class="result" id="boolResult"></div>
+            </div>
+
+            <div class="explanation">
+                <h4>💡 Подсказка</h4>
+                <p>Типы данных в Python:</p>
+                <ul>
+                    <li><strong>int</strong> - целые числа (42, -10, 0)</li>
+                    <li><strong>float</strong> - числа с плавающей точкой (3.14, -2.5, 0.0)</li>
+                    <li><strong>str</strong> - строки, заключаются в кавычки ("Привет", 'Мир')</li>
+                    <li><strong>bool</strong> - логические значения (True, False)</li>
+                </ul>
+                <p>Примеры:<br><code>my_number = 42  # int<br>my_float = 3.14  # float<br>my_string = "Привет"  # str<br>my_bool = True  # bool</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkIntType() {
+            const code = document.getElementById('intInput').value;
+            const resultDiv = document.getElementById('intResult');
+            if (code.includes('=') && !code.includes('.') && !code.includes('"') && !code.includes("'") && !code.includes('True') && !code.includes('False')) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Отлично! Вы создали переменную типа int!';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Это не переменная типа int. Попробуйте еще раз!';
+            }
+        }
+
+        function checkFloatType() {
+            const code = document.getElementById('floatInput').value;
+            const resultDiv = document.getElementById('floatResult');
+            if (code.includes('=') && code.includes('.')) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Отлично! Вы создали переменную типа float!';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Это не переменная типа float. Попробуйте еще раз!';
+            }
+        }
+
+        function checkStrType() {
+            const code = document.getElementById('strInput').value;
+            const resultDiv = document.getElementById('strResult');
+            if (code.includes('=') && (code.includes('"') || code.includes("'"))) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Отлично! Вы создали переменную типа str!';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Это не переменная типа str. Попробуйте еще раз!';
+            }
+        }
+
+        function checkBoolType() {
+            const code = document.getElementById('boolInput').value;
+            const resultDiv = document.getElementById('boolResult');
+            if (code.includes('=') && (code.includes('True') || code.includes('False'))) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Отлично! Вы создали переменную типа bool!';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Это не переменная типа bool. Попробуйте еще раз!';
+            }
+        }
+
+        function showSolution(type) {
+            const solutions = {
+                'int': 'my_number = 42',
+                'float': 'my_float = 3.14',
+                'str': 'my_string = "Привет"',
+                'bool': 'my_bool = True'
+            };
+            const inputId = type + 'Input';
+            const resultId = type + 'Result';
+            document.getElementById(inputId).value = solutions[type];
+            document.getElementById(resultId).className = 'result info';
+            document.getElementById(resultId).innerHTML = '💡 Пример решения: ' + solutions[type];
+        }
+
+        function resetIntInput() {
+            document.getElementById('intInput').value = '';
+            document.getElementById('intResult').className = 'result';
+            document.getElementById('intResult').innerHTML = '';
+        }
+
+        function resetFloatInput() {
+            document.getElementById('floatInput').value = '';
+            document.getElementById('floatResult').className = 'result';
+            document.getElementById('floatResult').innerHTML = '';
+        }
+
+        function resetStrInput() {
+            document.getElementById('strInput').value = '';
+            document.getElementById('strResult').className = 'result';
+            document.getElementById('strResult').innerHTML = '';
+        }
+
+        function resetBoolInput() {
+            document.getElementById('boolInput').value = '';
+            document.getElementById('boolResult').className = 'result';
+            document.getElementById('boolResult').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

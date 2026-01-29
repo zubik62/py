@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 8: Логические операторы</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding:30px 40px; text-align: center; }
+        .header h1 { font-size: 2em; margin-bottom: 5px; }
+        .header p { font-size: 1em; opacity: 0.9; }
+        .back-link { display: inline-block; margin-top: 15px; color: white; text-decoration: none; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s; }
+        .back-link:hover { background: rgba(255,255,255,0.3); }
+        .content { padding: 40px; }
+        .exercise-description { background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin-bottom: 25px; }
+        .exercise-description h3 { color: #667eea; margin-bottom: 10px; }
+        .task { background: white; border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; transition: all 0.3s; }
+        .task:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1); }
+        .task h4 { color: #333; margin-bottom: 15px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-right: 10px; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-hint { background: #ffc107; color: #333; }
+        .btn-hint:hover { background: #e0a800; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; }
+        .result.success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; display: block; }
+        .result.error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; display: block; }
+        .result.info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; display: block; }
+        .code-editor {
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .code-editor-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            color: #888;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-editor textarea {
+            width: 100%;
+            min-height: 150px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+        .code-editor textarea:focus {
+            outline: none;
+        }
+        .code-editor textarea::placeholder {
+            color: #666;
+        }
+        .explanation { background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin-top: 15px; }
+        .explanation h4 { color: #856404; margin-bottom: 10px; }
+        .explanation p { color: #856404; line-height: 1.6; }
+        .explanation ul { margin-left: 20px; margin-top: 10px; }
+        .explanation li { margin-bottom: 5px; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5em; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Упражнение 8: Логические операторы</h1>
+            <p>Урок 3: Идентификаторы, типы данных, переменные и операторы</p>
+            <a href="index.html" class="back-link">← Вернуться к списку упражнений</a>
+        </div>
+
+        <div class="content">
+            <div class="exercise-description">
+                <h3>📋 Задание</h3>
+                <p>Создайте выражения, которые возвращают True или False.</p>
+            </div>
+
+            <div class="task">
+                <h4>1. Выражение, которое возвращает True:</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="bool1" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkBoolean(1, 'bool1')">Проверить</button>
+                <button class="btn btn-hint" onclick="showSolution('bool1')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetBool1()">Сбросить</button>
+                <div class="result" id="boolResult1"></div>
+            </div>
+
+            <div class="task">
+                <h4>2. Выражение, которое возвращает False:</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="bool2" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkBoolean(2, 'bool2')">Проверить</button>
+                <button class="btn btn-hint" onclick="showSolution('bool2')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetBool2()">Сбросить</button>
+                <div class="result" id="boolResult2"></div>
+            </div>
+
+            <div class="task">
+                <h4>3. Проверьте, что 10 больше 5 И 20 меньше 30 (используйте оператор and):</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="bool3" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkBoolean(3, 'bool3')">Проверить</button>
+                <button class="btn btn-hint" onclick="showSolution('bool3')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetBool3()">Сбросить</button>
+                <div class="result" id="boolResult3"></div>
+            </div>
+
+            <div class="task">
+                <h4>4. Проверьте, что 5 больше 10 ИЛИ 15 больше 10 (используйте оператор or):</h4>
+                <div class="code-editor">
+                    <div class="code-editor-header">Python</div>
+                    <textarea id="bool4" placeholder="# Напишите ваш код здесь"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="checkBoolean(4, 'bool4')">Проверить</button>
+                <button class="btn btn-hint" onclick="showSolution('bool4')">Показать решение</button>
+                <button class="btn btn-secondary" onclick="resetBool4()">Сбросить</button>
+                <div class="result" id="boolResult4"></div>
+            </div>
+
+            <div class="explanation">
+                <h4>💡 Подсказка</h4>
+                <p>Логические операторы в Python:</p>
+                <ul>
+                    <li><strong>and</strong> - возвращает True, если оба условия истинны</li>
+                    <li><strong>or</strong> - возвращает True, если хотя бы одно условие истинно</li>
+                    <li><strong>not</strong> - инвертирует значение (True → False, False → True)</li>
+                </ul>
+                <p>Примеры:<br><code>result = 10 > 5 and 20 < 30  # True<br>result = 5 > 10 or 15 > 10  # True<br>result = not True  # False</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkBoolean(num, inputId) {
+            const code = document.getElementById(inputId).value;
+            const resultDiv = document.getElementById('boolResult' + num);
+            if (code.includes('=') && (code.includes('True') || code.includes('False'))) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✅ Отлично! Вы написали логическое выражение!';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Попробуйте еще раз!';
+            }
+        }
+
+        function showSolution(type) {
+            const solutions = {
+                'bool1': 'result = 10 > 5\nprint(result)  # True',
+                'bool2': 'result = 5 > 10\nprint(result)  # False',
+                'bool3': 'result = 10 > 5 and 20 < 30\nprint(result)  # True',
+                'bool4': 'result = 5 > 10 or 15 > 10\nprint(result)  # True'
+            };
+            const inputId = type;
+            const resultId = type + 'Result';
+            document.getElementById(inputId).value = solutions[type];
+            document.getElementById(resultId).className = 'result info';
+            document.getElementById(resultId).innerHTML = '💡 Пример решения:<br><code>' + solutions[type].replace(/\n/g, '<br>') + '</code>';
+        }
+
+        function resetBool1() {
+            document.getElementById('bool1').value = '';
+            document.getElementById('boolResult1').className = 'result';
+            document.getElementById('boolResult1').innerHTML = '';
+        }
+
+        function resetBool2() {
+            document.getElementById('bool2').value = '';
+            document.getElementById('boolResult2').className = 'result';
+            document.getElementById('boolResult2').innerHTML = '';
+        }
+
+        function resetBool3() {
+            document.getElementById('bool3').value = '';
+            document.getElementById('boolResult3').className = 'result';
+            document.getElementById('boolResult3').innerHTML = '';
+        }
+
+        function resetBool4() {
+            document.getElementById('bool4').value = '';
+            document.getElementById('boolResult4').className = 'result';
+            document.getElementById('boolResult4').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
